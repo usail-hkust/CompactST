@@ -1,0 +1,194 @@
+stmixer_test:
+  in_steps: 96
+  out_steps: 48
+  lr: 0.001
+  weight_decay: 0.0003
+  milestones: [20, 30]
+  lr_decay_rate: 0.1
+  batch_size: 32
+  max_epochs: 100
+  early_stop: 10
+  cl_step_size: 2500
+  clip_grad: 5
+  log_step: 1000
+  dataset_path: '/data/hanjindong/pretrain_data/fast_data/'
+  dataset_list: ['nyc_bike_inflow_10_20']
+  unseen_list: ['nyc_bike_inflow_10_20']
+  use_revin: True
+  mode: 'train'
+
+  model_args:
+    patch_length: 6
+    patch_stride: 6
+    num_patches: 16
+    downsample_factor: 2
+    in_dim: 1
+    out_dim: 1
+    hidden_dim: 64
+    num_experts: 8
+    num_layers: 5
+    num_nodes: 524
+    expansion_factor: 2
+    dropout: 0.1
+    add_position: 'fixed'
+    gated_attn: False
+
+
+stmixer_multiscale:
+  in_steps: 96
+  out_steps: 48
+  lr: 0.001
+  weight_decay: 0.0003
+  milestones: [20, 30]
+  lr_decay_rate: 0.1
+  batch_size: 32
+  max_epochs: 100
+  early_stop: 10
+  cl_step_size: 2500
+  clip_grad: 5
+  log_step: 1000
+  dataset_path: '/data/hanjindong/pretrain_data/fast_data/'
+  dataset_list: ['beijing_metro_inflow', 'beijing_metro_outflow', 'hangzhou_metro_inflow', 'hangzhou_metro_outflow',
+                 'beijing_metro_inflow_10min', 'beijing_metro_outflow_10min', 'beijing_metro_inflow_15min', 'beijing_metro_outflow_15min',
+                 'shanghai_metro_inflow', 'shanghai_metro_outflow', 'beijing_taxi_inflow_2013', 'beijing_taxi_outflow_2013',
+                 'beijing_taxi_inflow_2014', 'beijing_taxi_outflow_2014', 'beijing_taxi_inflow_2015', 'beijing_taxi_outflow_2015',
+                 'beijing_taxi_inflow_2016', 'beijing_taxi_outflow_2016', 
+                 'beijing_taxi_inflow_2014_60min', 'beijing_taxi_outflow_2014_60min', 
+                 'beijing_taxi_inflow_2016_60min', 'beijing_taxi_outflow_2016_60min', 
+                 'pems03', 'pems04', 'pems07', 'pems08', 'guangdong_air', 'huadong_air','columbia_wind', 'columbia_wind_power',
+                 'shenzhen_taxi', 'TrafficHZ', 'TrafficJN', 'TrafficNJ', 'TrafficSH', 'loop_seattle_10min',
+                 'TrafficTJ', 'TrafficZZ', 'TrafficCD', 'chi_bike_inflow_30min', 'chi_bike_outflow_30min', 
+                 'chi_bike_inflow_60min', 'chi_bike_outflow_60min', 'chi_taxi_inflow_77', 'chi_taxi_outflow_77', 
+                 'chicago_taxi', 'chicago_taxi_30min', 'loop_seattle',
+                 'pems04_10min', 'pems04_30min', 'pems04_60min',
+                 'pems07_10min', 'pems07_30min', 'pems07_60min', 'pems08_10min', 'pems08_30min', 'pems08_60min', 
+                 'loop_seattle_10min', 'loop_seattle_30min', 'loop_seattle_60min', 'TrafficHZ_60min', 'TrafficJN_60min', 
+                 'TrafficNJ_60min', 'TrafficSH_60min', 'TrafficTJ_60min', 'TrafficZZ_60min', 'TrafficCD_60min'
+                 ]
+  unseen_list: ['chengdu_traffic', 'shenzhen_traffic', 'pems_bay', 'metr_la', 'nyc_bike_inflow_10_20', 'nyc_bike_outflow_10_20', 
+                'nyc_taxi_inflow_10_20', 'nyc_taxi_outflow_10_20', 'radiation', 'washington_wind_power', 'washington_wind',
+                'nyc_solar_15min', 'nyc_solar_60min', 'beijing_aqi']
+  use_revin: True
+  mode: 'train'
+
+  model_args:
+    patch_length: 6
+    patch_stride: 6
+    num_patches: 16
+    downsample_factor: 2
+    in_dim: 1
+    out_dim: 1
+    hidden_dim: 64
+    num_experts: 8
+    num_layers: 5
+    num_nodes: 524
+    expansion_factor: 2
+    dropout: 0.1
+    add_position: 'fixed'
+    gated_attn: True
+
+
+stmixer_heter:
+  in_steps: 96
+  out_steps: 48
+  lr: 0.001
+  weight_decay: 0.0003
+  milestones: [15, 25]
+  lr_decay_rate: 0.1
+  batch_size: 32
+  max_epochs: 100
+  early_stop: 10
+  cl_step_size: 2500
+  clip_grad: 5
+  log_step: 1000
+  dataset_path: '/data/hanjindong/pretrain_data/fast_data/'
+  dataset_list: ['beijing_metro_inflow', 'beijing_metro_outflow', 'hangzhou_metro_inflow', 'hangzhou_metro_outflow',
+                 'beijing_metro_inflow_10min', 'beijing_metro_outflow_10min', 'beijing_metro_inflow_15min', 'beijing_metro_outflow_15min',
+                 'shanghai_metro_inflow', 'shanghai_metro_outflow', 'beijing_taxi_inflow_2013', 'beijing_taxi_outflow_2013',
+                 'beijing_taxi_inflow_2014', 'beijing_taxi_outflow_2014', 'beijing_taxi_inflow_2015', 'beijing_taxi_outflow_2015',
+                 'beijing_taxi_inflow_2016', 'beijing_taxi_outflow_2016', 'pems_bay', 'metr_la', 'shenzhen_taxi',
+                 'pems03', 'pems04', 'pems07', 'pems08', 'guangdong_air', 'huadong_air',
+                 'beijing_taxi_inflow_2014_60min', 'beijing_taxi_outflow_2014_60min', 
+                 'beijing_taxi_inflow_2016_60min', 'beijing_taxi_outflow_2016_60min',
+                 'TrafficHZ', 'TrafficJN', 'TrafficNJ', 'TrafficSH', 'TrafficTJ', 'TrafficZZ', 'TrafficCD', 
+                 'chi_bike_inflow_30min', 'chi_bike_outflow_30min', 'chi_bike_inflow_60min', 'chi_bike_outflow_60min', 
+                 'chi_taxi_inflow_77', 'chi_taxi_outflow_77', 'chicago_taxi', 'chicago_taxi_30min', 'loop_seattle', 
+                 'pems04_10min', 'pems04_15min', 'pems04_30min', 'pems04_60min',
+                 'pems07_10min', 'pems07_15min', 'pems07_30min', 'pems07_60min', 'pems08_10min', 'pems04_15min', 'pems08_30min', 'pems08_60min', 
+                 'loop_seattle_10min', 'loop_seattle_15min', 'loop_seattle_30min', 'loop_seattle_60min',
+                 'TrafficHZ_60min', 'TrafficJN_60min', 'TrafficNJ_60min', 'TrafficSH_60min', 'TrafficTJ_60min', 'TrafficZZ_60min', 'TrafficCD_60min'
+                 ]
+  unseen_list: ['chengdu_traffic', 'shenzhen_traffic', 'sd', 'nyc_bike_inflow_10_20', 'nyc_bike_outflow_10_20', 
+                'nyc_taxi_inflow_10_20', 'nyc_taxi_outflow_10_20', 'beijing_aqi', 'radiation', 'washington_wind_power', 'washington_wind',
+                'nyc_solar_15min', 'nyc_solar_60min']
+  use_revin: True
+  mode: 'train'
+
+  model_args:
+    patch_length: 6
+    patch_stride: 6
+    num_patches: 16
+    downsample_factor: 2
+    in_dim: 1
+    out_dim: 1
+    hidden_dim: 64
+    num_experts: 8
+    num_layers: 5
+    num_nodes: 524
+    expansion_factor: 2
+    dropout: 0.1
+    add_position: 'fixed'
+    gated_attn: False
+
+
+stmixer_gate:
+  in_steps: 96
+  out_steps: 48
+  lr: 0.001
+  weight_decay: 0.0003
+  milestones: [20, 30]
+  lr_decay_rate: 0.1
+  batch_size: 32
+  max_epochs: 100
+  early_stop: 10
+  cl_step_size: 2500
+  clip_grad: 5
+  log_step: 1000
+  dataset_path: '/data/hanjindong/pretrain_data/fast_data/'
+  dataset_list: ['beijing_metro_inflow', 'beijing_metro_outflow', 'hangzhou_metro_inflow', 'hangzhou_metro_outflow',
+                 'beijing_metro_inflow_10min', 'beijing_metro_outflow_10min', 'beijing_metro_inflow_15min', 'beijing_metro_outflow_15min',
+                 'shanghai_metro_inflow', 'shanghai_metro_outflow', 'beijing_taxi_inflow_2013', 'beijing_taxi_outflow_2013',
+                 'beijing_taxi_inflow_2014', 'beijing_taxi_outflow_2014', 'beijing_taxi_inflow_2015', 'beijing_taxi_outflow_2015',
+                 'beijing_taxi_inflow_2016', 'beijing_taxi_outflow_2016', 'pems_bay', 'metr_la', 'shenzhen_taxi',
+                 'pems03', 'pems04', 'pems07', 'pems08', 'guangdong_air', 'huadong_air',
+                 'beijing_taxi_inflow_2014_60min', 'beijing_taxi_outflow_2014_60min', 
+                 'beijing_taxi_inflow_2016_60min', 'beijing_taxi_outflow_2016_60min',
+                 'TrafficHZ', 'TrafficJN', 'TrafficNJ', 'TrafficSH', 'TrafficTJ', 'TrafficZZ', 'TrafficCD', 
+                 'chi_bike_inflow_30min', 'chi_bike_outflow_30min', 'chi_bike_inflow_60min', 'chi_bike_outflow_60min', 
+                 'chi_taxi_inflow_77', 'chi_taxi_outflow_77', 'chicago_taxi', 'chicago_taxi_30min', 'loop_seattle', 
+                 'pems04_10min', 'pems04_15min', 'pems04_30min', 'pems04_60min',
+                 'pems07_10min', 'pems07_15min', 'pems07_30min', 'pems07_60min', 'pems08_10min', 'pems04_15min', 'pems08_30min', 'pems08_60min', 
+                 'loop_seattle_10min', 'loop_seattle_15min', 'loop_seattle_30min', 'loop_seattle_60min',
+                 'TrafficHZ_60min', 'TrafficJN_60min', 'TrafficNJ_60min', 'TrafficSH_60min', 'TrafficTJ_60min', 'TrafficZZ_60min', 'TrafficCD_60min'
+                 ]
+  unseen_list: ['chengdu_traffic', 'shenzhen_traffic', 'sd', 'nyc_bike_inflow_10_20', 'nyc_bike_outflow_10_20', 
+                'nyc_taxi_inflow_10_20', 'nyc_taxi_outflow_10_20', 'beijing_aqi', 'radiation', 'washington_wind_power', 'washington_wind',
+                'nyc_solar_15min', 'nyc_solar_60min']
+  use_revin: True
+  mode: 'train'
+
+  model_args:
+    patch_length: 6
+    patch_stride: 6
+    num_patches: 16
+    downsample_factor: 2
+    in_dim: 1
+    out_dim: 1
+    hidden_dim: 64
+    num_experts: 8
+    num_layers: 5
+    num_nodes: 524
+    expansion_factor: 2
+    dropout: 0.1
+    add_position: 'fixed'
+    gated_attn: True
